@@ -13,6 +13,15 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+app.all('*', function(req, res, next) {
+       res.header("X-Version", "1");
+
+       res.header("Access-Control-Allow-Origin", "*");
+       res.header("Access-Control-Allow-Headers", "X-Requested-With");
+       res.header('Access-Control-Allow-Headers', 'Content-Type');
+       next();
+});
+
 app.get('/api/dictionary', function(req, res){
   res.json({ 
   	nouns: [
