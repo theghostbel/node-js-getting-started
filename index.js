@@ -13,6 +13,10 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+app.get('/arduino', function(request, response) {
+  response.send("Hello World! \n");
+});
+
 app.all('*', function(req, res, next) {
        res.header("X-Version", "1");
 
