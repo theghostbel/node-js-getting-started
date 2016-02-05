@@ -22,7 +22,7 @@ app.get('/arduino', function(request, response) {
 app.get('/arduino2', function(req, res) {
   request('https://snap-ci.com/theghostbel/travis-mocha/branch/master/cctray.xml', function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      res.send('body')
+      
       console.log('Body: ')
       console.log(body) // Show the HTML for the Google homepage. 
     	
@@ -31,6 +31,9 @@ app.get('/arduino2', function(req, res) {
     	  console.dir(result);
     	  console.log('Data: ')
     	  console.dir(result.lastBuildStatus);
+    	  
+    	  var field = result.Projects.Project[0].$.lastBuildStatus
+    	  res.send(field)
     	});
     }
   })
