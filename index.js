@@ -32,8 +32,13 @@ app.get('/arduino2', function(req, res) {
     	  console.log('Data: ')
     	  console.dir(result.lastBuildStatus);
     	  
-    	  var field = result.Projects.Project[0].$.lastBuildStatus
-    	  res.send(field)
+    	  var lastBuildStatus = result.Projects.Project[0].$.lastBuildStatus
+    	  var activity = result.Projects.Project[0].$.activity
+    	  
+    	  if (lastBuildStatus == "Success" && activity == "Sleeping") res.send('<0>')
+    	  if (lastBuildStatus == "Success" && activity != "Sleeping") res.send('<1>')
+    	  if (lastBuildStatus != "Success" && activity == "Sleeping") res.send('<2>')
+    	  if (lastBuildStatus != "Success" && activity != "Sleeping") res.send('<3>')
     	});
     }
   })
