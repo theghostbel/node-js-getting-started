@@ -84,16 +84,16 @@ app.post('/api/user/:userId', function(req, res, next) {
 	  console.log(req.body);
 	});
 
-	fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
-	    if (!err) {
-	      console.log('writing file: ' + data);	      
-	      res.header('Content-Type', 'application/json');
-	      res.send(data);
-	    } else {
-	      console.log(err);
-	      res.send('Error: ' + JSON.stringify(err));	      
-	    }
-	});    
+	// fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
+	//     if (!err) {
+	//       console.log('writing file: ' + data);	      
+	//       res.header('Content-Type', 'application/json');
+	//       res.send(data);
+	//     } else {
+	//       console.log(err);
+	//       res.send('Error: ' + JSON.stringify(err));	      
+	//     }
+	// });    
 });
 
 app.get('/api/dictionary', function(req, res){
