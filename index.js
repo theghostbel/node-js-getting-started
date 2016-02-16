@@ -71,6 +71,7 @@ app.get('/api/user/:userId', function(req, res, next) {
 app.post('/api/user/:userId', function(req, res, next) {
 	var filePath = 'user' + req.params.userId + '.json'
 
+	console.log('full query', JSON.stringify(req));      // your JSON
 	console.log(filePath, req.body);      // your JSON
 	res.header('Content-Type', 'application/json');
   	res.send(req.body);    // echo the result back
