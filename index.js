@@ -44,8 +44,16 @@ app.get('/arduino2', function(req, res) {
 });
 
 app.get('/api/user/:userId', function(req, res, next) {
-	console.log('request', req.params.userId)
-    res.send(JSON.stringify({ id: req.params.userId }))
+	var filePath = 'user' + req.params.userId
+	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
+	    if (!err) {
+	      console.log('received data: ' + data);	      
+	      res.send(data);
+	    } else {
+	      console.log(err);
+	      res.send('Error: ' + JSON.stringify(err));	      
+	    }
+	});    
 });
 
 
