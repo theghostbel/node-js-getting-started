@@ -73,7 +73,7 @@ app.post('/api/user/:userId', function(req, res, next) {
 
 	console.log(req.body);      // your JSON
 	res.header('Content-Type', 'application/json');
-  	response.send(req.body);    // echo the result back
+  	res.send(req.body);    // echo the result back
 
 	// fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
 	//     if (!err) {
