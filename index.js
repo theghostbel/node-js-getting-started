@@ -68,6 +68,25 @@ app.get('/api/user/:userId', function(req, res, next) {
 });
 
 
+app.post('/api/user/:userId', function(req, res, next) {
+	var filePath = 'user' + req.params.userId + '.json'
+
+	console.log(req.body);      // your JSON
+	res.header('Content-Type', 'application/json');
+  	response.send(req.body);    // echo the result back
+
+	// fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
+	//     if (!err) {
+	//       console.log('Reading file: ' + data);	      
+	//       res.header('Content-Type', 'application/json');
+	//       res.send(data);
+	//     } else {
+	//       console.log(err);
+	//       res.send('Error: ' + JSON.stringify(err));	      
+	//     }
+	// });    
+});
+
 app.get('/api/dictionary', function(req, res){
   res.json({ 
   	nouns: [
