@@ -45,7 +45,7 @@ app.get('/arduino2', function(req, res) {
 
 app.get('/api/user/:userId', function(req, res, next) {
 	console.log('request', req.params.userId)
-    res.send(JSON.stringify({id: req.params.userId}}))
+    res.send(JSON.stringify({ id: req.params.userId }))
 });
 
 
