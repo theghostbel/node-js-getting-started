@@ -44,6 +44,15 @@ app.get('/arduino2', function(req, res) {
   })
 });
 
+app.all('*', function(req, res, next) {
+       res.header("X-Version", "2");
+
+       res.header("Access-Control-Allow-Origin", "*");
+       res.header("Access-Control-Allow-Headers", "X-Requested-With");
+       res.header('Access-Control-Allow-Headers', 'Content-Type');
+       next();
+});
+
 app.get('/api/user/:userId', function(req, res, next) {
 	var filePath = 'user' + req.params.userId + '.json'
 	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
@@ -57,15 +66,6 @@ app.get('/api/user/:userId', function(req, res, next) {
 	});    
 });
 
-
-app.all('*', function(req, res, next) {
-       res.header("X-Version", "1");
-
-       res.header("Access-Control-Allow-Origin", "*");
-       res.header("Access-Control-Allow-Headers", "X-Requested-With");
-       res.header('Access-Control-Allow-Headers', 'Content-Type');
-       next();
-});
 
 app.get('/api/dictionary', function(req, res){
   res.json({ 
