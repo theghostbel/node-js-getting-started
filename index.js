@@ -57,7 +57,8 @@ app.get('/api/user/:userId', function(req, res, next) {
 	var filePath = 'user' + req.params.userId + '.json'
 	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
 	    if (!err) {
-	      console.log('received data: ' + data);	      
+	      console.log('Reading file: ' + data);	      
+	      res.header('Content-Type', 'application/json');
 	      res.send(data);
 	    } else {
 	      console.log(err);
