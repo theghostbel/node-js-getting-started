@@ -3,10 +3,12 @@ var app = express();
 var xml2js = require('xml2js');
 var request = require('request');
 var fs = require('fs');
+var bodyParser = require('body-parser');
 
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
