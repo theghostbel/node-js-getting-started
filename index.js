@@ -43,6 +43,9 @@ app.get('/arduino2', function(req, res) {
   })
 });
 
+app.get('/api/user/:userId', function(req, res, next) {
+       console.log(req)
+});
 
 
 app.all('*', function(req, res, next) {
