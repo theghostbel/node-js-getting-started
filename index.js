@@ -77,18 +77,23 @@ app.post('/api/user/:userId', function(req, res, next) {
 	console.log('File, body');      // your JSON
 	console.log(filePath, req.body);      // your JSON
 	res.header('Content-Type', 'application/json');
-  	res.send(req.body);    // echo the result back
+  	
+	fs.writeFile(filePath, req.body, function (err) {
+	  if (err) return console.log(err);
+	  console.log('Wrote file: ', filePath);
+	  console.log(req.body);
+	});
 
-	// fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
-	//     if (!err) {
-	//       console.log('Reading file: ' + data);	      
-	//       res.header('Content-Type', 'application/json');
-	//       res.send(data);
-	//     } else {
-	//       console.log(err);
-	//       res.send('Error: ' + JSON.stringify(err));	      
-	//     }
-	// });    
+	fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
+	    if (!err) {
+	      console.log('writing file: ' + data);	      
+	      res.header('Content-Type', 'application/json');
+	      res.send(data);
+	    } else {
+	      console.log(err);
+	      res.send('Error: ' + JSON.stringify(err));	      
+	    }
+	});    
 });
 
 app.get('/api/dictionary', function(req, res){
