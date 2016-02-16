@@ -1,7 +1,7 @@
 {
   "avatar": "https://placekitten.com/200/200?image=2",
   "firstName": "Alex",
-  "lastName": "Tolstoi"
+  "lastName": "Tolstoi",
   "age": 66,
   "gender": "M"
 }

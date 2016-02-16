@@ -1,7 +1,7 @@
 {
   "avatar": "https://placekitten.com/200/200?image=1",
   "firstName": "Vasya",
-  "lastName": "Pupkin"
+  "lastName": "Pupkin",
   "age": 33,
   "gender": "M"
 }
