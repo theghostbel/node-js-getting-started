@@ -56,7 +56,7 @@ app.all('*', function(req, res, next) {
        next();
 });
 
-app.get('/api/user/:userId', function(req, res, next) {
+app.get('/api/user/:userId', function(req, res, next) {	
 	var filePath = 'user' + req.params.userId + '.json'
 	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
 	    if (!err) {
@@ -78,7 +78,7 @@ app.post('/api/user/:userId', function(req, res, next) {
 	console.log(filePath, req.body);      // your JSON
 	res.header('Content-Type', 'application/json');
   	
-	fs.writeFile(filePath, req.body, function (err) {
+	fs.writeFile(filePath, JSON.stringify(req.body), function (err) {
 	  if (err) return console.log(err);
 	  console.log('Wrote file: ', filePath);
 	  console.log(req.body);
