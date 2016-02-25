@@ -72,10 +72,11 @@ app.get('/api/user/:userId', function(req, res, next) {
 
 app.get('/api/login', function(req, res, next) {	
       res.header('Content-Type', 'application/json');
-      var isValid = req.param.login === 'admin' && req.param.password === '123' 
+      console.log('params', req.param);
+      var isValid = req.param.login === 'admin' && req.param.password === '123'; 
+      console.log('isValid', isValid);
       res.send(JSON.stringify({ success: isValid });	      
 });
-
 
 app.post('/api/user/:userId', function(req, res, next) {
 	var filePath = 'user' + req.params.userId + '.json'
