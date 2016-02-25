@@ -70,6 +70,12 @@ app.get('/api/user/:userId', function(req, res, next) {
 	});    
 });
 
+app.get('/api/login', function(req, res, next) {	
+      res.header('Content-Type', 'application/json');
+      var isValid = req.param.login === 'admin' && req.param.password === '123' 
+      res.send(JSON.stringify({ success: isValid });	      
+});
+
 
 app.post('/api/user/:userId', function(req, res, next) {
 	var filePath = 'user' + req.params.userId + '.json'
@@ -77,12 +83,13 @@ app.post('/api/user/:userId', function(req, res, next) {
 	console.log('File, body');      // your JSON
 	console.log(filePath, req.body);      // your JSON
 	res.header('Content-Type', 'application/json');
+	res.send(JSON.stringify({ success: true, user: req.body }));
   	
-	fs.writeFile(filePath, JSON.stringify(req.body), function (err) {
-	  if (err) return console.log(err);
-	  console.log('Wrote file: ', filePath);
-	  console.log(req.body);
-	});
+	//fs.writeFile(filePath, JSON.stringify(req.body), function (err) {
+	//  if (err) return console.log(err);
+	//  console.log('Wrote file: ', filePath);
+	//  console.log(req.body);
+	//});
 
 	// fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
 	//     if (!err) {
