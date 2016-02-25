@@ -51,7 +51,7 @@ app.all('*', function(req, res, next) {
        res.header("X-Version", "2");
 
        res.header("Access-Control-Allow-Origin", "*");
-       res.header("Access-Control-Allow-Headers", "X-Requested-With");
+       res.header("Access-Control-Allow-Headers", "X-Requested-With, Origin, Content-Type, Accept, X-Auth");
        res.header('Access-Control-Allow-Headers', 'Content-Type');
        next();
 });
@@ -75,7 +75,11 @@ app.get('/api/login', function(req, res, next) {
       console.log('params', req.param);
       var isValid = req.param('login') === 'admin' && req.param('password') === '123'; 
       console.log('isValid', isValid);
+      if (isValid)
+      	res.send(JSON.stringify({ success: isValid, token: 'Xa-Xa-Xa I am a token' }));	      
+      else
       res.send(JSON.stringify({ success: isValid }));	      
+      	
 });
 
 app.post('/api/user/:userId', function(req, res, next) {
