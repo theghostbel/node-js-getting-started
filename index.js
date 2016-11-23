@@ -19,25 +19,30 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+// check github push
+app.get('/tallink', function(request, response) {
+  response.send("Hello Tallink! \n");
+});
+
 app.get('/arduino', function(request, response) {
   response.send("Hello World! \n");
 });
 
 app.get('/arduino2', function(req, res) {
   request('https://snap-ci.com/theghostbel/travis-mocha/branch/master/cctray.xml', function (error, response, body) {
-    if (!error && response.statusCode == 200) {      
+    if (!error && response.statusCode == 200) {
       console.log('Body: ')
-      console.log(body) // Show the HTML for the Google homepage. 
-    	
+      console.log(body) // Show the HTML for the Google homepage.
+
     	xml2js.parseString(body, function (err, result) {
     	  console.log('Parsed: ')
     	  console.dir(result);
     	  console.log('Data: ')
     	  console.dir(result.lastBuildStatus);
-    	  
+
     	  var lastBuildStatus = result.Projects.Project[0].$.lastBuildStatus
     	  var activity = result.Projects.Project[0].$.activity
-    	  
+
     	  if (lastBuildStatus == "Success" && activity == "Sleeping") res.send('<0>')
     	  if (lastBuildStatus == "Success" && activity != "Sleeping") res.send('<1>')
     	  if (lastBuildStatus != "Success" && activity == "Sleeping") res.send('<2>')
@@ -56,18 +61,18 @@ app.all('*', function(req, res, next) {
        next();
 });
 
-app.get('/api/user/:userId', function(req, res, next) {	
+app.get('/api/user/:userId', function(req, res, next) {
 	var filePath = 'user' + req.params.userId + '.json'
 	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
 	    if (!err) {
-	      console.log('Reading file: ' + data);	      
+	      console.log('Reading file: ' + data);
 	      res.header('Content-Type', 'application/json');
 	      res.send(data);
 	    } else {
 	      console.log(err);
-	      res.send('Error: ' + JSON.stringify(err));	      
+	      res.send('Error: ' + JSON.stringify(err));
 	    }
-	});    
+	});
 });
 
 
@@ -77,7 +82,7 @@ app.post('/api/user/:userId', function(req, res, next) {
 	console.log('File, body');      // your JSON
 	console.log(filePath, req.body);      // your JSON
 	res.header('Content-Type', 'application/json');
-  	
+
 	fs.writeFile(filePath, JSON.stringify(req.body), function (err) {
 	  if (err) return console.log(err);
 	  console.log('Wrote file: ', filePath);
@@ -86,18 +91,18 @@ app.post('/api/user/:userId', function(req, res, next) {
 
 	// fs.writeFile(filePath, {encoding: 'utf-8'}, function(err,data){
 	//     if (!err) {
-	//       console.log('writing file: ' + data);	      
+	//       console.log('writing file: ' + data);
 	//       res.header('Content-Type', 'application/json');
 	//       res.send(data);
 	//     } else {
 	//       console.log(err);
-	//       res.send('Error: ' + JSON.stringify(err));	      
+	//       res.send('Error: ' + JSON.stringify(err));
 	//     }
-	// });    
+	// });
 });
 
 app.get('/api/dictionary', function(req, res){
-  res.json({ 
+  res.json({
   	nouns: [
 		'time',
 		'person',
@@ -132,5 +137,3 @@ app.get('/api/dictionary', function(req, res){
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-
-
